@@ -79,7 +79,7 @@
     - Preserve grouped marks like `!?` and `...`.
 - **Validation**: Verify results in single and multiple words/sentences.
 
-## Task 08: Integration Test – Numeric + Article + Case
+## Task 08: Integration Test – Numeric + Article + Case - Phase One
 **Goal**: Test early rule interactions.
 
 - **Test Writing**:
@@ -88,7 +88,7 @@
   - Run pipeline: `NumericConversion` → `Article` → `Case`.
 - **Validation**: Confirm sequential transformation correctness.
 
-## Task 09: Integration Test – Quotes + Punctuation
+## Task 09: Integration Test – Quotes + Punctuation - Phase Two
 **Goal**: Validate structural formatting rules.
 
 - **Test Writing**:
@@ -108,7 +108,7 @@
   - Wrap parsing in try-safe blocks.
 - **Validation**: Confirm system logs issues without stopping execution.
 
-## Task 11: Implement Formula One Full Integration Test
+## Task 11: Implement Formula One Full Integration Test - Phase Final
 **Goal**: Validate all rules together on a complex paragraph.
 
 - **Test Writing**: Use the Formula One text case from the analysis doc.
