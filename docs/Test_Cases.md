@@ -2,43 +2,43 @@
 
 ### 1 Simple Test Cases (One Rule Each)
 
-1. **Hexadecimal Conversion**  
+1. **(hex)** /**Hexadecimal Conversion**  
    Input: “1E (hex) files were added.”  
    Output: “30 files were added.”
 
-2. **Binary Conversion**  
+2. **(bin)** /**Binary Conversion**  
    Input: “10 (bin) days later.”  
    Output: “2 days later.”
 
-3. **Uppercase Conversion**  
+3. **(up)** /**Uppercase Conversion**  
    Input: “go (up) now!”  
    Output: “GO now!”
 
-4. **Lowercase Conversion**  
+4. **(low)** /**Lowercase Conversion**  
    Input: “HELLO (low) there.”  
    Output: “hello there.”
 
-5. **Capitalize Conversion**  
+5. **(cap)** /**Capitalize Conversion**  
    Input: “bridge (cap) is nice.”  
    Output: “Bridge is nice.”
 
-6. **Multi-word Capitalization**  
+6. **(cap, n)** /**Multi-word Capitalization**  
    Input: “this is magic (cap, 2)”  
    Output: “this Is Magic”
 
-7. **Punctuation Fixing**  
+7. **Punctuation Rules** /**Punctuation Fixing**  
    Input: “Hello ,world !!”  
    Output: “Hello, world!!”
 
-8. **Grouped Punctuation**  
+8. **Punctuation Rules** /**Grouped Punctuation**  
    Input: “Wait ... what ?”  
    Output: “Wait... what?”
 
-9. **Quotation Rule**  
+9. **Quotation Marks ('') ("")** /**Quotation Rule**  
    Input: “He said: ' wow '.”  
    Output: “He said: 'wow'.”
 
-10. **Article Agreement**  
+10. **Article Agreement (a → an)**  
    Input: “a amazing car.”  
    Output: “an amazing car.”
 
