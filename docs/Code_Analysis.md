@@ -7,7 +7,7 @@ The **go-reloaded** project is a Go-based text reformatter and editor designed t
 
 ### General Functionality
 - **Input:** a text file containing text with transformation markers (e.g., `(hex)`, `(up, 2)`, `(low)`).
-- **Output:** a new text file with all corrections applied.
+- **Output:** a new text file with all corrections applied and the keywords removed.
 
 ### Transformation Rules
 
