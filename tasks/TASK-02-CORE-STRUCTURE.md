@@ -1,5 +1,5 @@
 ## Task 02: Core Structure and CLI Integration
-- completed:
+- completed: ✅
 
 **Goal**: Create the program’s entry point, pipeline skeleton, and argument parsing.
 

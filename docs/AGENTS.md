@@ -6,6 +6,7 @@
 - *individual tasks* /tasks/   this folder contains each task/step  (first task is TASK-01-xxx.md , last is TASK-13-xxx.md)
 - *test cases* /docs/Test_Cases.md contains test cases for the project
 - *agent log* /docs/Agent_Log.md this is your log-diary write if you want there what you have done and what goes on but dont spend too much effort , it is not mandatory
+- *functions folder* /functions/ the rest of the fuctions that the main and other files will live here in order to keep it clean
 
 ## Individual tasks explanation
 - Each task containt the title with and small brief at the very top explaining whats the main focus.
@@ -19,6 +20,8 @@
 - The goals and rules of the project are writen, do not interfere with the rules, tasks or analysis.
 - You can write in the *agent log* whenever you want in the context of the project
 - You will be asked to markdown completed tasks in the specific 'completed:' section ( usually second row of each task), just fill in a check ( ✅ ) no need for timestaps and dates
+- All the secondary functions used in main.go should be create in the *functions folder*
+- Feel free to run commands fon the cli in order to test, create or update functions
 - Comply with goals and behaviors bellow
 
 ## Goals and Behavior

@@ -1,5 +1,5 @@
 ## Task 01: Project Setup & Test Framework 
-- completed:
+- completed: ✅
 
 **Goal**: Initialize the Go module, directories, and test framework.
 
