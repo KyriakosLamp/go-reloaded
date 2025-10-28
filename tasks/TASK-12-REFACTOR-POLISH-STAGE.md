@@ -1,4 +1,6 @@
 ## Task 12: Refactor and Polish
+- completed:
+
 **Goal**: Ensure readability, consistent naming, and reusable code.
 
 - **Test Writing**: Re-run all existing tests (unit + integration).

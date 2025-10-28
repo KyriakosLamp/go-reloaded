@@ -1,4 +1,6 @@
 ## Task 08: Integration Test – Numeric + Article + Case - Phase One
+- completed:
+
 **Goal**: Test early rule interactions.
 
 - **Test Writing**:

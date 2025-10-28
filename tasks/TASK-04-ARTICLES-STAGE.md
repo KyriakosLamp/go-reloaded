@@ -1,4 +1,6 @@
 ## Task 04: Implement Article Agreement Rule
+- completed:
+
 **Goal**: Replace “a” with “an” when followed by a vowel (`a, e, i, o, u`) or `h`.
 
 - **Test Writing**:

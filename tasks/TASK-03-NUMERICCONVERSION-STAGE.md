@@ -1,4 +1,6 @@
 ## Task 03: Implement NumericConversionStage (Hex + Bin)
+- completed:
+
 **Goal**: Convert preceding hexadecimal or binary values to decimal equivalents.
 
 - **Test Writing**:

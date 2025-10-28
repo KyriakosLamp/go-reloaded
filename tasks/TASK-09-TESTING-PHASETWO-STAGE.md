@@ -1,4 +1,6 @@
 ## Task 09: Integration Test – Quotes + Punctuation - Phase Two
+- completed:
+
 **Goal**: Validate structural formatting rules.
 
 - **Test Writing**:
