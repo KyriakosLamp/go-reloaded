@@ -1,51 +1,65 @@
-# Technology Stack
+# Technology Stack - go-reloaded
 
 ## Programming Language
 - **Go 1.21** - Primary development language
-- Modern Go features and standard library usage
-- No external dependencies beyond Go standard library
+- **Standard Library Only** - No external dependencies
+
+## Module Configuration
+```
+module go-reloaded
+go 1.21
+```
 
 ## Build System
-- **Go Modules** - Dependency management with go.mod
-- Native Go build tools and commands
-- Standard Go project structure
+- **Go Modules** - Dependency management (though no external deps used)
+- **Native Go Build** - Standard `go build` and `go run` commands
 
 ## Development Commands
 
-### Building
+### Running the Application
 ```bash
-go build -o go-reloaded main.go utils.go
+go run . input.txt output.txt
 ```
 
 ### Testing
 ```bash
-go test -v                    # Run all tests with verbose output
-go test ./...                 # Run tests in all subdirectories
-go test -cover               # Run tests with coverage report
+# Run all tests
+go test ./...
+
+# Run specific package tests
+go test ./functions
+
+# Run with verbose output
+go test -v ./...
+
+# Run specific test files
+go test main_test.go
+go test utils_test.go
 ```
 
-### Running
+### Building
 ```bash
-./go-reloaded input.txt output.txt    # Run compiled binary
-go run main.go utils.go input.txt output.txt    # Direct execution
+# Build executable
+go build -o go-reloaded
+
+# Run built executable
+./go-reloaded input.txt output.txt
 ```
 
-### Development Tools
-```bash
-go fmt ./...                 # Format all Go files
-go vet ./...                 # Static analysis
-go mod tidy                  # Clean up dependencies
-```
+## Project Dependencies
+- **Zero External Dependencies** - Uses only Go standard library
+- **File I/O**: `os` package for file operations
+- **String Processing**: `strings`, `strconv` packages
+- **Regular Expressions**: `regexp` package for pattern matching
+- **Testing**: `testing` package for unit tests
 
-## Project Configuration
-- **Module Name**: go-reloaded
-- **Go Version**: 1.21 (minimum required)
-- **Architecture**: Single module with multiple source files
-- **Testing Framework**: Go's built-in testing package
-- **No External Dependencies**: Pure Go standard library implementation
+## Development Environment
+- **Go 1.21+** required
+- **Linux/Unix** development environment
+- **Standard Go toolchain** (go, gofmt, go test)
 
-## File Processing
-- Text file input/output operations
-- String manipulation and transformation
-- Regular expression support (if needed)
-- Pipeline-based processing architecture
+## Code Organization
+- **Package Structure**: Main package with `functions` subpackage
+- **Interface-Based Design**: Stage interface for pipeline components
+- **Test-Driven Development**: Comprehensive test coverage for all stages
+- **Modular Architecture**: Each transformation as separate, testable component

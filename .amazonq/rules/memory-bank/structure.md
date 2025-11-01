@@ -1,46 +1,60 @@
-# Project Structure
+# Project Structure - go-reloaded
 
 ## Directory Organization
 
 ### Root Level
-- `main.go` - Entry point and pipeline orchestration
-- `utils.go` - Core transformation functions and utilities
-- `main_test.go` - Integration tests for main pipeline
-- `utils_test.go` - Unit tests for utility functions
+- `main.go` - Entry point with pipeline orchestration and CLI handling
 - `go.mod` - Go module definition (Go 1.21)
 - `README.md` - Project documentation and transformation rules
+- `*_test.go` - Root-level test files for main functionality
 
-### Supporting Directories
-- `functions/` - Secondary functions used by main.go (modular organization)
-- `docs/` - Comprehensive project documentation
-  - `AGENTS.md` - AI agent instructions and workflow
-  - `Code_Analysis.md` - Technical analysis documentation
-  - `go-reloaded_StagesPlan.md` - Step-by-step project plan
-  - `Test_Cases.md` - Test case specifications
-  - `Agent_Log.md` - Development log and progress tracking
-- `tasks/` - Individual task breakdowns (TASK-01 through TASK-13)
-- `.amazonq/rules/memory-bank/` - AI context and memory bank files
+### Core Components
 
-### Sample Files
-- `sample_input.txt` - Example input with transformation markers
-- `sample_output.txt` - Expected output after transformations
-- `go-reloaded` - Compiled binary executable
+#### `/functions/` - Transformation Stages
+Contains all pipeline stage implementations with corresponding tests:
+- `numeric_conversion.go/.go_test` - Binary/hex to decimal conversion
+- `article_agreement.go/.go_test` - "a" to "an" transformation
+- `case_transform.go/.go_test` - Upper/lower/capitalize operations
+- `quotation.go/.go_test` - Quotation mark spacing correction
+- `punctuation.go/.go_test` - Punctuation spacing normalization
+- `utils.go` - Shared utility functions for file I/O
 
-## Core Components
+#### `/docs/` - Documentation
+- `Agent_Log.md` - Development process documentation
+- `AGENTS.md` - AI agent interaction logs
+- `Code_Analysis.md` - Technical analysis documentation
+- `go-reloaded_StagesPlan.md` - Pipeline stage planning
+- `Test_Cases.md` - Test case documentation
+
+#### `/tasks/` - Development Workflow
+Sequential task breakdown files (TASK-01 through TASK-13):
+- Project setup and core structure
+- Individual stage implementations
+- Testing phases
+- Error handling and logging
+- Documentation and polish
+
+#### Test Files
+- `sample_input.txt/sample_output.txt` - Main test case
+- `test_*.txt` - Individual feature test files with expected outputs
+
+## Architectural Patterns
 
 ### Pipeline Architecture
-The project follows a pipeline pattern where text flows through sequential transformation stages:
-1. Input processing and tokenization
-2. Numeric conversion stage (hex/bin to decimal)
-3. Article agreement correction (a → an)
-4. Case transformation stage (up/low/cap)
-5. Quotation mark normalization
-6. Punctuation spacing correction
-7. Output generation
+- **Pipeline struct**: Orchestrates sequential stage processing
+- **Stage interface**: Defines `Process(text string) string` contract
+- **Modular stages**: Each transformation rule as independent stage
+- **Sequential processing**: Text flows through stages in defined order
+
+### Stage Processing Order
+1. NumericConversionStage - Handle (hex)/(bin) markers
+2. ArticleStage - Process "a" to "an" conversions
+3. CaseTransformStage - Apply case transformations
+4. QuotationStage - Fix quotation mark spacing
+5. PunctuationStage - Normalize punctuation spacing
 
 ### Component Relationships
-- `main.go` orchestrates the pipeline and handles file I/O
-- `utils.go` contains individual transformation functions
-- `functions/` directory houses modular helper functions
-- Test files validate each component and integration points
-- Documentation provides comprehensive guidance for development and usage
+- `main.go` creates pipeline and adds stages in specific order
+- Each stage in `/functions/` implements Stage interface
+- Utility functions in `utils.go` handle file operations
+- Test files validate individual stage and integration behavior
