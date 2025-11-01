@@ -50,8 +50,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Create pipeline (empty for now)
+	// Create pipeline with stages
 	pipeline := NewPipeline()
+	pipeline.AddStage(&functions.NumericConversionStage{})
+	pipeline.AddStage(&functions.ArticleStage{})
 
 	// Process content
 	result := pipeline.Process(content)
