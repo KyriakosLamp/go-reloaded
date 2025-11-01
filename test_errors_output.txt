@@ -1,1 +1,0 @@
-XYZ (hex) is invalid and 102 (bin) too, but 26 works fine.
