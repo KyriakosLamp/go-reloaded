@@ -1,4 +1,5 @@
 let currentSlideIndex = 1;
+let autoAdvanceTimer;
 
 function showSlide(n) {
     const slides = document.querySelectorAll('.carousel-item');
@@ -28,17 +29,76 @@ function changeSlide(n) {
 function currentSlide(n) {
     currentSlideIndex = n;
     showSlide(currentSlideIndex);
+    resetAutoAdvance();
 }
 
-// Auto-advance carousel every 5 seconds
-setInterval(() => {
-    changeSlide(1);
-}, 5000);
+function resetAutoAdvance() {
+    clearInterval(autoAdvanceTimer);
+    autoAdvanceTimer = setInterval(() => {
+        changeSlide(1);
+    }, 5000);
+}
+
+// Section scrolling
+let isScrolling = false;
+let scrollTimeout;
+
+function scrollToSection(direction) {
+    if (isScrolling) return;
+    
+    const sections = document.querySelectorAll('.section');
+    const currentSection = getCurrentSection();
+    let targetIndex = currentSection;
+    
+    if (direction > 0 && targetIndex < sections.length - 1) {
+        targetIndex++;
+    } else if (direction < 0 && targetIndex > 0) {
+        targetIndex--;
+    }
+    
+    if (targetIndex !== currentSection) {
+        isScrolling = true;
+        sections[targetIndex].scrollIntoView({ behavior: 'smooth' });
+        
+        setTimeout(() => {
+            isScrolling = false;
+        }, 1000);
+    }
+}
+
+function getCurrentSection() {
+    const sections = document.querySelectorAll('.section');
+    let currentIndex = 0;
+    
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            currentIndex = index;
+        }
+    });
+    
+    return currentIndex;
+}
+
+// Wheel event for section scrolling
+window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        if (e.deltaY > 0) {
+            scrollToSection(1); // Scroll down
+        } else {
+            scrollToSection(-1); // Scroll up
+        }
+    }, 50);
+}, { passive: false });
 
 // Initialize carousel and navigation
 document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentSlideIndex);
     updateActiveSection();
+    resetAutoAdvance();
 });
 
 // Section navigation
@@ -66,7 +126,7 @@ function updateActiveSection() {
 // Update active section on scroll
 window.addEventListener('scroll', updateActiveSection);
 
-// Smooth scrolling for any internal links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -78,3 +138,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+

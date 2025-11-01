@@ -22,7 +22,6 @@ body {
 .fixed-header {
     background-color: #2d2d2d;
     padding: 1rem 0;
-    text-align: center;
     border-bottom: 3px solid #4a9eff;
     position: fixed;
     top: 0;
@@ -30,6 +29,30 @@ body {
     right: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.fixed-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.github-link a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4a9eff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.github-link a:hover {
+    color: #357abd;
+}
+
+.github-link svg {
+    margin-bottom: 0.2rem;
 }
 
 .fixed-header h1 {
@@ -184,6 +207,12 @@ code {
     text-align: center;
     width: 100%;
     min-height: 300px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
 }
 
 .carousel-item.active {
@@ -212,7 +241,7 @@ code {
 
 .carousel-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 1rem;
     height: 50px;
@@ -257,9 +286,12 @@ code {
 
 .pipeline-info {
     background-color: #2d2d2d;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 8px;
     margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pipeline-info ul {
@@ -279,6 +311,74 @@ code {
     left: 0;
     color: #51cf66;
     font-weight: bold;
+}
+
+.highlight {
+    font-size: 1.1em;
+    color: #4a9eff;
+}
+
+.perfect {
+    font-size: 1.2em;
+    color: #51cf66;
+    text-transform: uppercase;
+}
+
+
+
+.file-tree {
+    background-color: #2d2d2d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    text-align: left;
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.tree-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    min-width: 900px;
+}
+
+.tree-column {
+    min-width: 400px;
+}
+
+.folder, .file {
+    padding: 0.3rem 0;
+    user-select: none;
+}
+
+.folder-content {
+    margin-left: 1.5rem;
+    display: none;
+}
+
+.folder.open .folder-content {
+    display: block;
+}
+
+.file-icon, .folder-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+@media (max-width: 1000px) {
+    .tree-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .tree-column {
+        min-width: auto;
+    }
 }
 
 footer {

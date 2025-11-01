@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Go-Reloaded</title>
+    <title>Go-Reloaded</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="fixed-header">
         <div class="container">
-            <h1>🚀 Go-Reloaded <span class="author">by klampria</span></h1>
+            <h1>🚀 Go-Reloaded </h1>
+            <div class="github-link">
+                <a href="https://github.com/kyriakoslamp/go-reloaded" target="_blank">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span>KyriakosLamp</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -21,7 +29,7 @@
             <li><a href="#features" class="nav-link">Features</a></li>
             <li><a href="#samples" class="nav-link">Test Samples</a></li>
             <li><a href="#architecture" class="nav-link">Architecture</a></li>
-            <li><a href="#tests" class="nav-link">Tests</a></li>
+            <li><a href="#tests" class="nav-link">Structure</a></li>
         </ul>
     </nav>
 
@@ -163,7 +171,6 @@ go build
                 </div>
                 
                 <div class="carousel-controls">
-                    <button class="prev" onclick="changeSlide(-1)">‹</button>
                     <div class="dots">
                         <span class="dot active" onclick="currentSlide(1)"></span>
                         <span class="dot" onclick="currentSlide(2)"></span>
@@ -171,7 +178,6 @@ go build
                         <span class="dot" onclick="currentSlide(4)"></span>
                         <span class="dot" onclick="currentSlide(5)"></span>
                     </div>
-                    <button class="next" onclick="changeSlide(1)">›</button>
                 </div>
             </div>
         </section>
@@ -181,27 +187,76 @@ go build
             <div class="pipeline-info">
                 <p>Each transformation is a separate stage, making it:</p>
                 <ul>
-                    <li>Easy to test individual parts</li>
-                    <li>Simple to add new rules</li>
-                    <li>Clean and maintainable code</li>
-                    <li>Perfect for team development</li>
+                    <li><strong>Easy</strong> to test individual parts</li>
+                    <li><em>Simple</em> to add new rules</li>
+                    <li><span class="highlight">Clean</span> and maintainable code</li>
+                    <li><span class="perfect">Perfect</span> for team development</li>
                 </ul>
             </div>
         </section>
 
         <section id="tests" class="tests section">
-            <h2>Tests</h2>
-            <div class="code-block">
-                <pre><code>go test ./tests -v</code></pre>
+            <h2>Project Structure</h2>
+            <div class="file-tree">
+                <div class="tree-grid">
+                    <div class="tree-column">
+                        <div class="folder open">
+                            <img src="icons/default_folder.svg" class="folder-icon" alt="folder"> go-reloaded/
+                            <div class="folder-content">
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> main.go</div>
+                                <div class="file"><img src="icons/file_type_go_package.svg" class="file-icon" alt="mod"> go.mod</div>
+                                <div class="file"><img src="icons/file_type_markdown.svg" class="file-icon" alt="md"> README.md</div>
+                                <div class="file"><img src="icons/file_type_light_agents.svg" class="file-icon" alt="agents"> AGENTS.md</div>
+                                
+                                <div class="folder open">
+                                    <img src="icons/default_folder.svg" class="folder-icon" alt="folder"> functions/
+                                    <div class="folder-content">
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> article_agreement.go</div>
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> case_transform.go</div>
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> logger.go</div>
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> numeric_conversion.go</div>
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> punctuation.go</div>
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> quotation.go</div>
+                                        <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> utils.go</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tree-column">
+                        <div class="folder open">
+                            <img src="icons/folder_type_test_opened.svg" class="folder-icon" alt="tests"> tests/
+                            <div class="folder-content">
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> error_handling_test.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> full_integration_test.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> functions_test.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> integration_test.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> main_test.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> phase_two_test.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> pipeline.go</div>
+                                <div class="file"><img src="icons/file_type_go.svg" class="file-icon" alt="go"> utils_test.go</div>
+                            </div>
+                        </div>
+                        
+                        <div class="folder open">
+                            <img src="icons/folder_type_docs.svg" class="folder-icon" alt="docs"> docs/
+                            <div class="folder-content">
+                                <div class="file"><img src="icons/file_type_html.svg" class="file-icon" alt="html"> index.html</div>
+                                <div class="file"><img src="icons/file_type_css.svg" class="file-icon" alt="css"> style.css</div>
+                                <div class="file"><img src="icons/file_type_js.svg" class="file-icon" alt="js"> script.js</div>
+                                <div class="file"><img src="icons/file_type_markdown.svg" class="file-icon" alt="md"> Code_Analysis.md</div>
+                                <div class="file"><img src="icons/file_type_markdown.svg" class="file-icon" alt="md"> Test_Cases.md</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>All tests pass with comprehensive coverage including error handling! ✅</p>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>Simple text formatting made easy. 🚀</p>
-            <p><a href="https://github.com/kyriakoslamp/go-reloaded" target="_blank">View on GitHub</a></p>
         </div>
     </footer>
 
