@@ -1,6 +1,7 @@
 package functions
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -22,6 +23,8 @@ func (n *NumericConversionStage) Process(text string) string {
 			hexStr := parts[0]
 			if decimal, err := strconv.ParseInt(hexStr, 16, 64); err == nil {
 				return strconv.FormatInt(decimal, 10)
+			} else {
+				GlobalLogger.LogWarning(fmt.Sprintf("Invalid hex number: %s", hexStr))
 			}
 		}
 		return match // Return original if conversion fails
@@ -34,6 +37,8 @@ func (n *NumericConversionStage) Process(text string) string {
 			binStr := parts[0]
 			if decimal, err := strconv.ParseInt(binStr, 2, 64); err == nil {
 				return strconv.FormatInt(decimal, 10)
+			} else {
+				GlobalLogger.LogWarning(fmt.Sprintf("Invalid binary number: %s", binStr))
 			}
 		}
 		return match // Return original if conversion fails

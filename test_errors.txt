@@ -1,0 +1,1 @@
+XYZ (hex) is invalid and 102 (bin) too, but 1A (hex) works fine.
