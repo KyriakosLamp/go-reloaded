@@ -1,5 +1,5 @@
 ## Task 06: Implement Quotation Formatting
-- completed:
+- completed: ✅
 
 **Goal**: Clean spacing and ensure quotes hug inner text properly.
 
