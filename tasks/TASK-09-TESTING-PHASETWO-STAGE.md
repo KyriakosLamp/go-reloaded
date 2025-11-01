@@ -1,5 +1,5 @@
 ## Task 09: Integration Test – Quotes + Punctuation - Phase Two
-- completed:
+- completed: ✅
 
 **Goal**: Validate structural formatting rules.
 
