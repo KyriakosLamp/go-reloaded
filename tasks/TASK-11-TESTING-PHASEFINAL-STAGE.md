@@ -1,5 +1,5 @@
 ## Task 11: Implement Formula One Full Integration Test - Phase Final
-- completed:
+- completed: ✅
 
 **Goal**: Validate all rules together on a complex paragraph.
 
