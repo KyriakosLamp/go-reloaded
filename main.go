@@ -53,7 +53,7 @@ func main() {
 
 	// Create pipeline with stages in specific order:
 	// 1. Numeric conversions (hex/bin) - must be first
-	// 2. Article agreement (a->an) - before case changes
+	// 2. Article agreement (a->an) - handles both normal and case transformation patterns
 	// 3. Case transformations - before formatting
 	// 4. Quotation formatting - before punctuation
 	// 5. Punctuation spacing - final cleanup
