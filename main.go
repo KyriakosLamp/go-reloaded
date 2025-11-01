@@ -56,6 +56,7 @@ func main() {
 	pipeline.AddStage(&functions.ArticleStage{})
 	pipeline.AddStage(&functions.CaseTransformStage{})
 	pipeline.AddStage(&functions.QuotationStage{})
+	pipeline.AddStage(&functions.PunctuationStage{})
 
 	// Process content
 	result := pipeline.Process(content)

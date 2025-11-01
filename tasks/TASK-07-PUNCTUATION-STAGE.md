@@ -1,5 +1,5 @@
 ## Task 07: Implement Punctuation Handling
-- completed:
+- completed: ✅
 
 **Goal**: Fix punctuation spacing and grouping.
 
