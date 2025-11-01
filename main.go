@@ -6,14 +6,14 @@ import (
 	"go-reloaded/functions"
 )
 
-// Pipeline represents the text processing pipeline
-type Pipeline struct {
-	stages []Stage
-}
-
 // Stage interface for pipeline stages
 type Stage interface {
 	Process(text string) string
+}
+
+// Pipeline represents the text processing pipeline
+type Pipeline struct {
+	stages []Stage
 }
 
 // NewPipeline creates a new pipeline
@@ -26,7 +26,7 @@ func (p *Pipeline) AddStage(stage Stage) {
 	p.stages = append(p.stages, stage)
 }
 
-// Process runs text through all pipeline stages
+// Process runs text through all pipeline stages sequentially
 func (p *Pipeline) Process(text string) string {
 	for _, stage := range p.stages {
 		text = stage.Process(text)
@@ -35,6 +35,7 @@ func (p *Pipeline) Process(text string) string {
 }
 
 func main() {
+	// Validate command line arguments
 	if len(os.Args) != 3 {
 		fmt.Println("Usage: go run . input.txt output.txt")
 		os.Exit(1)
@@ -50,7 +51,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Create pipeline with stages
+	// Create pipeline with stages in specific order:
+	// 1. Numeric conversions (hex/bin) - must be first
+	// 2. Article agreement (a->an) - before case changes
+	// 3. Case transformations - before formatting
+	// 4. Quotation formatting - before punctuation
+	// 5. Punctuation spacing - final cleanup
 	pipeline := NewPipeline()
 	pipeline.AddStage(&functions.NumericConversionStage{})
 	pipeline.AddStage(&functions.ArticleStage{})
@@ -58,7 +64,7 @@ func main() {
 	pipeline.AddStage(&functions.QuotationStage{})
 	pipeline.AddStage(&functions.PunctuationStage{})
 
-	// Process content
+	// Process content through pipeline
 	result := pipeline.Process(content)
 
 	// Write output file

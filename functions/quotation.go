@@ -4,10 +4,10 @@ import (
 	"regexp"
 )
 
-// QuotationStage handles quotation mark formatting
+// QuotationStage handles quotation mark spacing and formatting
 type QuotationStage struct{}
 
-// Process removes inner spacing from quoted text
+// Process removes inner spaces from quoted text, making quotes hug the content
 func (q *QuotationStage) Process(text string) string {
 	// Handle single quotes
 	singleQuotePattern := regexp.MustCompile(`'\s+([^']*?)\s+'`)

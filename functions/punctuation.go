@@ -5,10 +5,10 @@ import (
 	"strings"
 )
 
-// PunctuationStage handles punctuation spacing and grouping
+// PunctuationStage handles punctuation spacing and grouping normalization
 type PunctuationStage struct{}
 
-// Process fixes punctuation spacing - attach to previous word, space after
+// Process attaches punctuation to preceding words and ensures proper spacing
 func (p *PunctuationStage) Process(text string) string {
 	// Pattern to match spaces before punctuation marks
 	pattern := regexp.MustCompile(`\s+([.,:;!?]+)`)

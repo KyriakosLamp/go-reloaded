@@ -1,5 +1,5 @@
 ## Task 12: Refactor and Polish
-- completed:
+- completed: ✅
 
 **Goal**: Ensure readability, consistent naming, and reusable code.
 

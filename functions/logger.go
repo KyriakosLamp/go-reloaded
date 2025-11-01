@@ -6,12 +6,12 @@ import (
 	"os"
 )
 
-// Logger handles controlled warnings and error logging
+// Logger provides configurable warning and error logging functionality
 type Logger struct {
 	enabled bool
 }
 
-// NewLogger creates a new logger instance
+// NewLogger creates a new logger instance with specified enable state
 func NewLogger(enabled bool) *Logger {
 	return &Logger{enabled: enabled}
 }
@@ -23,7 +23,7 @@ func (l *Logger) LogWarning(message string) {
 	}
 }
 
-// LogError logs an error message and exits if critical
+// LogError logs an error message and optionally exits if critical
 func (l *Logger) LogError(message string, critical bool) {
 	if critical {
 		fmt.Printf("ERROR: %s\n", message)
@@ -33,5 +33,5 @@ func (l *Logger) LogError(message string, critical bool) {
 	}
 }
 
-// Global logger instance
-var GlobalLogger = NewLogger(false) // Disabled by default for clean output
+// GlobalLogger is the shared logger instance, disabled by default for clean CLI output
+var GlobalLogger = NewLogger(false)

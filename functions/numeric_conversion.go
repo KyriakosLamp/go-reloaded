@@ -7,10 +7,10 @@ import (
 	"strings"
 )
 
-// NumericConversionStage handles hex and binary conversions
+// NumericConversionStage handles conversion of hexadecimal and binary numbers to decimal
 type NumericConversionStage struct{}
 
-// Process converts hex and binary numbers to decimal
+// Process converts (hex) and (bin) markers with preceding numbers to decimal format
 func (n *NumericConversionStage) Process(text string) string {
 	// Pattern to match (hex) or (bin) markers
 	hexPattern := regexp.MustCompile(`(\w+)\s+\(hex\)`)

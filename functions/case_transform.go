@@ -6,10 +6,10 @@ import (
 	"strings"
 )
 
-// CaseTransformStage handles case transformations
+// CaseTransformStage handles case transformations with optional word count
 type CaseTransformStage struct{}
 
-// Process applies case transformations (up), (low), (cap) with optional count
+// Process applies (up), (low), (cap) transformations with optional count parameter
 func (c *CaseTransformStage) Process(text string) string {
 	// Pattern to match word(s) followed by transformation marker
 	pattern := regexp.MustCompile(`(\S+(?:\s+\S+)*?)\s+\((up|low|cap)(?:,\s*(\d+))?\)`)

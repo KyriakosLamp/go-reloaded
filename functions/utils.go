@@ -4,7 +4,7 @@ import (
 	"os"
 )
 
-// ReadFile reads the content of a file and returns it as a string
+// ReadFile reads the entire content of a file and returns it as a string
 func ReadFile(filename string) (string, error) {
 	data, err := os.ReadFile(filename)
 	if err != nil {
@@ -13,7 +13,7 @@ func ReadFile(filename string) (string, error) {
 	return string(data), nil
 }
 
-// WriteFile writes content to a file
+// WriteFile writes string content to a file with standard permissions (0644)
 func WriteFile(filename, content string) error {
 	return os.WriteFile(filename, []byte(content), 0644)
 }
