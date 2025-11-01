@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>go-reloaded - Text Formatter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 go-reloaded</h1>
+            <p>A simple text formatter that fixes common writing mistakes</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>What it does</h2>
+            <div class="example">
+                <div class="before">
+                    <h3>Before:</h3>
+                    <code>it (cap) was a historic race ,lewis hamilton (up,2) took pole position , scoring " 1E (hex) points " !</code>
+                </div>
+                <div class="arrow">→</div>
+                <div class="after">
+                    <h3>After:</h3>
+                    <code>It was an historic race, LEWIS HAMILTON took pole position, scoring "30 points"!</code>
+                </div>
+            </div>
+        </section>
+
+        <section class="usage">
+            <h2>How to use</h2>
+            <div class="code-block">
+                <pre><code># Run the program
+go run . input.txt output.txt
+
+# Or build and run
+go build
+./go-reloaded input.txt output.txt</code></pre>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>What it fixes</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Numbers</h3>
+                    <p><code>1E (hex)</code> → <code>30</code></p>
+                    <p><code>10 (bin)</code> → <code>2</code></p>
+                </div>
+                <div class="feature">
+                    <h3>Case</h3>
+                    <p><code>hello (up)</code> → <code>HELLO</code></p>
+                    <p><code>WORLD (low)</code> → <code>world</code></p>
+                    <p><code>bridge (cap)</code> → <code>Bridge</code></p>
+                </div>
+                <div class="feature">
+                    <h3>Multiple words</h3>
+                    <p><code>this is fun (up, 2)</code> → <code>this IS FUN</code></p>
+                </div>
+                <div class="feature">
+                    <h3>Punctuation</h3>
+                    <p><code>hello ,world !!</code> → <code>hello, world!!</code></p>
+                </div>
+                <div class="feature">
+                    <h3>Quotes</h3>
+                    <p><code>' awesome '</code> → <code>'awesome'</code></p>
+                </div>
+                <div class="feature">
+                    <h3>Grammar</h3>
+                    <p><code>a apple</code> → <code>an apple</code></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="test-samples">
+            <h2>Test Samples</h2>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-item active">
+                        <h3>Simple Case Transform</h3>
+                        <div class="test-case">
+                            <div class="input">
+                                <strong>Input:</strong>
+                                <code>go (up) now and make this nice (cap, 2) please.</code>
+                            </div>
+                            <div class="output">
+                                <strong>Output:</strong>
+                                <code>GO now and make This Nice please.</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <h3>Number Conversions</h3>
+                        <div class="test-case">
+                            <div class="input">
+                                <strong>Input:</strong>
+                                <code>1A (hex) files and 10 (bin) more (up)</code>
+                            </div>
+                            <div class="output">
+                                <strong>Output:</strong>
+                                <code>26 files and 2 MORE</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <h3>Quotes & Punctuation</h3>
+                        <div class="test-case">
+                            <div class="input">
+                                <strong>Input:</strong>
+                                <code>He said ' hello world ' ,and smiled .</code>
+                            </div>
+                            <div class="output">
+                                <strong>Output:</strong>
+                                <code>He said 'hello world', and smiled.</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <h3>Article Agreement</h3>
+                        <div class="test-case">
+                            <div class="input">
+                                <strong>Input:</strong>
+                                <code>I saw a orange car and a honest man.</code>
+                            </div>
+                            <div class="output">
+                                <strong>Output:</strong>
+                                <code>I saw an orange car and an honest man.</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <h3>Complex Formula One</h3>
+                        <div class="test-case">
+                            <div class="input">
+                                <strong>Input:</strong>
+                                <code>it (cap) was a historic race ,lewis hamilton (up,2) took pole position , scoring " 1E (hex) points " !</code>
+                            </div>
+                            <div class="output">
+                                <strong>Output:</strong>
+                                <code>It was an historic race, LEWIS HAMILTON took pole position, scoring "30 points"!</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="prev" onclick="changeSlide(-1)">‹</button>
+                    <div class="dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                        <span class="dot" onclick="currentSlide(5)"></span>
+                    </div>
+                    <button class="next" onclick="changeSlide(1)">›</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="architecture">
+            <h2>Why pipeline architecture?</h2>
+            <div class="pipeline-info">
+                <p>Each transformation is a separate stage, making it:</p>
+                <ul>
+                    <li>Easy to test individual parts</li>
+                    <li>Simple to add new rules</li>
+                    <li>Clean and maintainable code</li>
+                    <li>Perfect for team development</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tests">
+            <h2>Tests</h2>
+            <div class="code-block">
+                <pre><code>go test ./tests -v</code></pre>
+            </div>
+            <p>All tests pass with comprehensive coverage including error handling! ✅</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Simple text formatting made easy. 🚀</p>
+            <p><a href="https://github.com/klampria/go-reloaded" target="_blank">View on GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
