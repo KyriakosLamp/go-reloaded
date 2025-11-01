@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"go-reloaded/functions"
+	"os"
 )
 
 // Stage interface for pipeline stages
@@ -31,7 +31,7 @@ func (p *Pipeline) Process(text string) string {
 	for _, stage := range p.stages {
 		text = stage.Process(text)
 	}
-	return text
+	return text + "\n"
 }
 
 func main() {
