@@ -1,43 +1,112 @@
-# go-reloaded  by klampria
+# go-reloaded
 
-The **go-reloaded** project is a Go-based text reformatter and editor designed to process an input text file and produce a corrected or enhanced output file. The program applies a series of transformation rules to the text to correct case formatting, punctuation spacing, and linguistic details. It also handles number conversions (binary, hexadecimal) and article agreement (“a” → “an”).
+A simple text formatter that fixes common writing mistakes and applies transformations using special markers.
 
-### General Functionality
-- **Input:** a text file containing text with transformation markers (e.g., `(hex)`, `(up, 2)`, `(low)`).
-- **Output:** a new text file with all corrections applied.
+## What it does
 
-### Why I Chose Pipeline
+Takes input text like this:
+```
+it (cap) was a historic race ,lewis hamilton (up,2) took pole position , scoring " 1E (hex) points " !
+```
 
-I chose the **Pipeline architecture** because it fits my flow of thinking perfectly. Each rule or transformation can act as a separate stage, making the code easier to test, extend, and maintain. Pipelines also help avoid large loops and  makes it easy to break the project into smaller ones and distribute to each team member,  in case of a team project. This approach improves readability, reduces the risk of side effects, and allows future optimizations such as parallel rule application.
+And turns it into this:
+```
+It was an historic race, LEWIS HAMILTON took pole position, scoring "30 points"!
+```
 
+## How to use
 
-### Transformation Rules
+```bash
+# Run the program
+go run . input.txt output.txt
 
-1. **(hex)** — Convert the previous hexadecimal word into decimal.  
-   - Example: `1E (hex)` → `30`
-2. **(bin)** — Convert the previous binary word into decimal.  
-   - Example: `10 (bin)` → `2`
-3. **(up)** — Convert the previous word to uppercase.  
-   - Example: `go (up)` → `GO`
-4. **(low)** — Convert the previous word to lowercase.  
-   - Example: `HELLO (low)` → `hello`
-5. **(cap)** — Capitalize the previous word (first letter uppercase).  
-   - Example: `bridge (cap)` → `Bridge`
-6. **(up, n)**, **(low, n)**, **(cap, n)** — Apply transformation to *n* previous words.  
-   - Example: `this is fun (up, 2)` → `this IS FUN`
-7. **Punctuation Rules:**  
-   - Punctuation (`. , ! ? : ;`) should be attached to the preceding word and separated from the following one by a space.  
-   - Multiple punctuations (e.g., `!?`, `...`) stay grouped together.  
-   - Example: `hello ,world !!` → `hello, world!!`
-8. **Quotation Marks ('') ("")** — Should hug the quoted words with no inner spacing.  
-   - Example: `' awesome '` → `'awesome'`
-   - Example: `" awesome"` → `"awesome"`
-9. **Article Agreement (a → an)** — If the next word starts with a vowel (`a, e, i, o, u`) or `h`, replace `a` with `an`.  
-   - Example: `a orange car` → `an orange car`
-   - Example: `i need a hero` → `i need an hero`
+# Or build and run
+go build
+./go-reloaded input.txt output.txt
+```
 
-This program emphasizes text normalization and formatting consistency, suitable for auto-editing or preprocessing text before further analysis.
+## What it fixes
 
----
+- **Numbers**: `1E (hex)` → `30`, `10 (bin)` → `2`
+- **Case**: `hello (up)` → `HELLO` ||  `WORLD (low)` → `world` || `bridge (cap)` → `Bridge`
+- **Multiple words**: `this is fun (up, 2)` → `this IS FUN`
+- **Punctuation spacing**: `hello ,world !!` → `hello, world!!`
+- **Quote spacing**: `' awesome '` → `'awesome'`
+- **Grammar**: `a apple` → `an apple`
 
+## Why pipeline architecture?
 
+Each transformation is a separate stage, making it:
+- Easy to test individual parts
+- Simple to add new rules
+- Clean and maintainable code
+- Perfect for team development
+
+## Tests
+
+```bash
+go test ./tests -v
+```
+
+```
+=== RUN   TestErrorHandling
+=== RUN   TestErrorHandling/Invalid_hex_should_remain_unchanged
+WARNING: Invalid hex number: XYZ
+=== RUN   TestErrorHandling/Invalid_binary_should_remain_unchanged
+WARNING: Invalid binary number: 102
+=== RUN   TestErrorHandling/Multiple_invalid_conversions
+WARNING: Invalid hex number: GHI
+WARNING: Invalid binary number: 123
+=== RUN   TestErrorHandling/Mixed_valid_and_invalid_hex
+WARNING: Invalid hex number: XYZ
+=== RUN   TestErrorHandling/Mixed_valid_and_invalid_binary
+WARNING: Invalid binary number: 102
+--- PASS: TestErrorHandling (0.00s)
+    --- PASS: TestErrorHandling/Invalid_hex_should_remain_unchanged (0.00s)
+    --- PASS: TestErrorHandling/Invalid_binary_should_remain_unchanged (0.00s)
+    --- PASS: TestErrorHandling/Multiple_invalid_conversions (0.00s)
+    --- PASS: TestErrorHandling/Mixed_valid_and_invalid_hex (0.00s)
+    --- PASS: TestErrorHandling/Mixed_valid_and_invalid_binary (0.00s)
+=== RUN   TestLoggerFunctionality
+WARNING: Test warning message
+ERROR: Test error message
+--- PASS: TestLoggerFunctionality (0.00s)
+=== RUN   TestFullPipelineIntegration
+--- PASS: TestFullPipelineIntegration (0.00s)
+=== RUN   TestComplexCombinations
+=== RUN   TestComplexCombinations/Numeric_+_Case
+=== RUN   TestComplexCombinations/Case_+_Quotes_+_Punctuation
+=== RUN   TestComplexCombinations/Article_+_Case
+=== RUN   TestComplexCombinations/Article_+_Case_Multi-word
+=== RUN   TestComplexCombinations/Case_+_Punctuation
+--- PASS: TestComplexCombinations (0.00s)
+    --- PASS: TestComplexCombinations/Numeric_+_Case (0.00s)
+    --- PASS: TestComplexCombinations/Case_+_Quotes_+_Punctuation (0.00s)
+    --- PASS: TestComplexCombinations/Article_+_Case (0.00s)
+    --- PASS: TestComplexCombinations/Article_+_Case_Multi-word (0.00s)
+    --- PASS: TestComplexCombinations/Case_+_Punctuation (0.00s)
+=== RUN   TestNumericConversion
+--- PASS: TestNumericConversion (0.00s)
+=== RUN   TestArticleAgreement
+--- PASS: TestArticleAgreement (0.00s)
+=== RUN   TestCaseTransform
+--- PASS: TestCaseTransform (0.00s)
+=== RUN   TestQuotation
+--- PASS: TestQuotation (0.00s)
+=== RUN   TestPunctuation
+--- PASS: TestPunctuation (0.00s)
+=== RUN   TestPhaseOneIntegration
+--- PASS: TestPhaseOneIntegration (0.00s)
+=== RUN   TestCLIIntegration
+--- PASS: TestCLIIntegration (0.00s)
+=== RUN   TestPipelineStructure
+--- PASS: TestPipelineStructure (0.00s)
+=== RUN   TestPhaseTwoIntegration
+--- PASS: TestPhaseTwoIntegration (0.00s)
+=== RUN   TestFileIO
+--- PASS: TestFileIO (0.00s)
+PASS
+ok      go-reloaded/tests    (cached)
+```
+
+That's it! Simple text formatting made easy. 🚀
