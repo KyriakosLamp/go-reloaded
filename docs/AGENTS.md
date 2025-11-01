@@ -29,5 +29,7 @@
 - I want you to proceed with each *individualy task* but keep in mind the *general steps* in order to avoid backtracking.
 - provide questions if the information from *individual tasks* are not enough in order to create the code for the goal.
 - After creating the code i will review it and make sure everything works out. I will either tell you what to fix or tell you that the task is complete so you can mark the task as completed.
+- After successfully completing each task, create a "Task-XX-report.md" file in the "Agent reports" folder with the implementation summary, validation results, and key technical decisions
+
 
 
