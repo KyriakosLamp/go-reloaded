@@ -5,23 +5,42 @@
 ### Root Level
 - `main.go` - Entry point with pipeline orchestration and CLI handling
 - `go.mod` - Go module definition (Go 1.21)
-- `README.md` - Project documentation and transformation rules
-- `*_test.go` - Root-level test files for main functionality
+- `README.md` - Project documentation with examples and test output
+- `AGENTS.md` - AI agent instructions and development guidelines
 
 ### Core Components
 
 #### `/functions/` - Transformation Stages
-Contains all pipeline stage implementations with corresponding tests:
-- `numeric_conversion.go/.go_test` - Binary/hex to decimal conversion
-- `article_agreement.go/.go_test` - "a" to "an" transformation
-- `case_transform.go/.go_test` - Upper/lower/capitalize operations
-- `quotation.go/.go_test` - Quotation mark spacing correction
-- `punctuation.go/.go_test` - Punctuation spacing normalization
-- `utils.go` - Shared utility functions for file I/O
+Contains all pipeline stage implementations (tests moved to /tests/):
+- `numeric_conversion.go` - Binary/hex to decimal conversion with error logging
+- `article_agreement.go` - "a" to "an" transformation
+- `case_transform.go` - Upper/lower/capitalize operations with count support
+- `quotation.go` - Quotation mark spacing correction
+- `punctuation.go` - Punctuation spacing normalization
+- `logger.go` - Configurable warning and error logging system
+- `utils.go` - File I/O utilities (ReadFile, WriteFile)
 
-#### `/docs/` - Documentation
-- `Agent_Log.md` - Development process documentation
-- `AGENTS.md` - AI agent interaction logs
+#### `/tests/` - All Test Files
+Consolidated test suite with comprehensive coverage:
+- `functions_test.go` - Individual stage unit tests
+- `integration_test.go` - Phase one integration tests
+- `phase_two_test.go` - Phase two integration tests
+- `full_integration_test.go` - Complete pipeline with Formula One test
+- `error_handling_test.go` - Error scenarios and logging tests
+- `main_test.go` - CLI integration tests
+- `utils_test.go` - File I/O tests
+- `pipeline.go` - Test pipeline definitions
+
+#### `/docs/` - GitHub Pages Site
+- `index.html` - Main site with dark theme and interactive features
+- `style.css` - Responsive CSS with section navigation
+- `script.js` - Carousel, smooth scrolling, section detection
+- `icons/` - VS Code file type icons for project tree
+
+#### `/Agent_reports/` - Implementation Reports
+- `Task-01-report.md` through `Task-12-report.md` - Detailed implementation summaries
+
+#### `/docs/` (Additional Documentation)
 - `Code_Analysis.md` - Technical analysis documentation
 - `go-reloaded_StagesPlan.md` - Pipeline stage planning
 - `Test_Cases.md` - Test case documentation
@@ -34,9 +53,9 @@ Sequential task breakdown files (TASK-01 through TASK-13):
 - Error handling and logging
 - Documentation and polish
 
-#### Test Files
-- `sample_input.txt/sample_output.txt` - Main test case
-- `test_*.txt` - Individual feature test files with expected outputs
+#### Temporary Files (Cleaned Up)
+- All temporary test files removed for clean repository
+- Tests create/cleanup their own temporary files during execution
 
 ## Architectural Patterns
 

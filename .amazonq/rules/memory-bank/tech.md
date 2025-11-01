@@ -23,18 +23,19 @@ go run . input.txt output.txt
 
 ### Testing
 ```bash
-# Run all tests
-go test ./...
+# Run all tests (16 tests, all passing)
+go test ./tests -v
 
-# Run specific package tests
-go test ./functions
+# Run specific test categories
+go test ./tests -run TestErrorHandling
+go test ./tests -run TestFullPipelineIntegration
+go test ./tests -run TestComplexCombinations
 
-# Run with verbose output
-go test -v ./...
-
-# Run specific test files
-go test main_test.go
-go test utils_test.go
+# Test output shows comprehensive coverage:
+# - Error handling with warnings
+# - Individual stage functionality
+# - Multi-stage integration
+# - CLI end-to-end testing
 ```
 
 ### Building
@@ -49,9 +50,16 @@ go build -o go-reloaded
 ## Project Dependencies
 - **Zero External Dependencies** - Uses only Go standard library
 - **File I/O**: `os` package for file operations
-- **String Processing**: `strings`, `strconv` packages
+- **String Processing**: `strings`, `strconv` packages for transformations
 - **Regular Expressions**: `regexp` package for pattern matching
-- **Testing**: `testing` package for unit tests
+- **Error Handling**: `fmt`, `log` packages for logging system
+- **Testing**: `testing` package with table-driven tests
+
+## GitHub Pages Deployment
+- **Location**: `/docs/` folder ready for GitHub Pages
+- **Features**: Dark theme, responsive design, VS Code icons
+- **Technology**: Pure HTML/CSS/JavaScript, no build process required
+- **Sections**: Interactive carousel, smooth scrolling, file tree display
 
 ## Development Environment
 - **Go 1.21+** required
@@ -59,7 +67,9 @@ go build -o go-reloaded
 - **Standard Go toolchain** (go, gofmt, go test)
 
 ## Code Organization
-- **Package Structure**: Main package with `functions` subpackage
+- **Package Structure**: Main package with `functions` subpackage, `tests` package
 - **Interface-Based Design**: Stage interface for pipeline components
-- **Test-Driven Development**: Comprehensive test coverage for all stages
+- **Test-Driven Development**: 16 comprehensive tests covering all functionality
 - **Modular Architecture**: Each transformation as separate, testable component
+- **Error Recovery**: Graceful degradation with configurable logging
+- **Clean Repository**: No temporary files, proper .gitignore practices
