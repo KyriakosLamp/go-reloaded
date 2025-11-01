@@ -18,7 +18,6 @@
 
 ## Agent rules
 - The goals and rules of the project are writen, do not interfere with the rules, tasks or analysis.
-- You can write in the *agent log* whenever you want in the context of the project
 - You will be asked to markdown completed tasks in the specific 'completed:' section ( usually second row of each task), just fill in a check ( ✅ ) no need for timestaps and dates
 - All the secondary functions used in main.go should be create in the *functions folder*
 - Feel free to run commands fon the cli in order to test, create or update functions
