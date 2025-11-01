@@ -1,5 +1,5 @@
 ## Task 05: Implement CaseTransformStage (Unified)
-- completed:
+- completed: ✅
 
 **Goal**: Handle `(up)`, `(low)`, `(cap)` and their numeric forms `(up, n)`, `(low, n)`, `(cap, n)`.
 

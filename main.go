@@ -54,6 +54,7 @@ func main() {
 	pipeline := NewPipeline()
 	pipeline.AddStage(&functions.NumericConversionStage{})
 	pipeline.AddStage(&functions.ArticleStage{})
+	pipeline.AddStage(&functions.CaseTransformStage{})
 
 	// Process content
 	result := pipeline.Process(content)
