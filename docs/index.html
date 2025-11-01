@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>go-reloaded - Text Formatter</title>
+    <title>🚀 Go-Reloaded</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="fixed-header">
         <div class="container">
-            <h1>🚀 go-reloaded</h1>
-            <p>A simple text formatter that fixes common writing mistakes</p>
+            <h1>🚀 Go-Reloaded <span class="author">by klampria</span></h1>
         </div>
     </header>
 
+    <nav class="section-nav">
+        <ul>
+            <li><a href="#hero" class="nav-link active">What it does</a></li>
+            <li><a href="#usage" class="nav-link">How to use</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#samples" class="nav-link">Test Samples</a></li>
+            <li><a href="#architecture" class="nav-link">Architecture</a></li>
+            <li><a href="#tests" class="nav-link">Tests</a></li>
+        </ul>
+    </nav>
+
     <main class="container">
-        <section class="hero">
+        <section id="hero" class="hero section">
             <h2>What it does</h2>
+            <p class="explanation">Go-Reloaded is a smart text processor that automatically fixes common writing mistakes and applies formatting transformations. Simply add special markers like <code>(up)</code>, <code>(hex)</code>, or <code>(cap, 2)</code> to your text, and the program will intelligently transform your content according to the rules you specify.</p>
             <div class="example">
                 <div class="before">
                     <h3>Before:</h3>
@@ -30,7 +42,7 @@
             </div>
         </section>
 
-        <section class="usage">
+        <section id="usage" class="usage section">
             <h2>How to use</h2>
             <div class="code-block">
                 <pre><code># Run the program
@@ -42,7 +54,7 @@ go build
             </div>
         </section>
 
-        <section class="features">
+        <section id="features" class="features section">
             <h2>What it fixes</h2>
             <div class="feature-grid">
                 <div class="feature">
@@ -75,7 +87,7 @@ go build
             </div>
         </section>
 
-        <section class="test-samples">
+        <section id="samples" class="test-samples section">
             <h2>Test Samples</h2>
             <div class="carousel-container">
                 <div class="carousel">
@@ -164,7 +176,7 @@ go build
             </div>
         </section>
 
-        <section class="architecture">
+        <section id="architecture" class="architecture section">
             <h2>Why pipeline architecture?</h2>
             <div class="pipeline-info">
                 <p>Each transformation is a separate stage, making it:</p>
@@ -177,7 +189,7 @@ go build
             </div>
         </section>
 
-        <section class="tests">
+        <section id="tests" class="tests section">
             <h2>Tests</h2>
             <div class="code-block">
                 <pre><code>go test ./tests -v</code></pre>
@@ -189,7 +201,7 @@ go build
     <footer>
         <div class="container">
             <p>Simple text formatting made easy. 🚀</p>
-            <p><a href="https://github.com/klampria/go-reloaded" target="_blank">View on GitHub</a></p>
+            <p><a href="https://github.com/kyriakoslamp/go-reloaded" target="_blank">View on GitHub</a></p>
         </div>
     </footer>
 

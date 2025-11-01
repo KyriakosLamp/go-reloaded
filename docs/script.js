@@ -35,10 +35,36 @@ setInterval(() => {
     changeSlide(1);
 }, 5000);
 
-// Initialize carousel
+// Initialize carousel and navigation
 document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentSlideIndex);
+    updateActiveSection();
 });
+
+// Section navigation
+function updateActiveSection() {
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            currentSection = section.id;
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Update active section on scroll
+window.addEventListener('scroll', updateActiveSection);
 
 // Smooth scrolling for any internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
