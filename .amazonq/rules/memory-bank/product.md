@@ -1,32 +1,60 @@
-# Product Overview - go-reloaded
+# go-reloaded - Text Formatter
 
 ## Project Purpose
-go-reloaded is a Go-based text reformatter and editor that processes input text files to produce corrected and enhanced output files. The program applies systematic transformation rules to normalize text formatting, correct case issues, fix punctuation spacing, and handle linguistic details.
-
-## Key Features
-- **Text Transformation Pipeline**: Modular pipeline architecture with independent processing stages
-- **Numeric Conversions**: Binary and hexadecimal to decimal conversion with markers
-- **Case Transformations**: Uppercase, lowercase, and capitalization with support for multi-word operations
-- **Punctuation Normalization**: Automatic spacing correction for punctuation marks
-- **Quotation Mark Handling**: Smart quotation mark spacing and grouping
-- **Article Agreement**: Automatic "a" to "an" conversion based on vowel/h detection
-- **File Processing**: Command-line interface for batch text processing
+A command-line text formatter that automatically fixes common writing mistakes and applies text transformations using special marker syntax. The tool processes input files and outputs clean, properly formatted text.
 
 ## Value Proposition
-- **Consistency**: Ensures uniform text formatting across documents
-- **Automation**: Eliminates manual text correction tasks
-- **Extensibility**: Pipeline architecture allows easy addition of new transformation rules
-- **Reliability**: Comprehensive test coverage ensures accurate transformations
+- **Automated Text Processing**: Eliminates manual text formatting tasks
+- **Pipeline Architecture**: Modular design allows easy extension and maintenance
+- **Zero Dependencies**: Pure Go standard library implementation
+- **Comprehensive Testing**: 16+ test cases ensure reliability
+- **Production Ready**: Handles edge cases and error scenarios gracefully
+
+## Key Features
+
+### Text Transformations
+- **Case Transformations**: `(up)`, `(low)`, `(cap)` with multi-word support
+- **Numeric Conversions**: Hexadecimal `(hex)` and binary `(bin)` to decimal
+- **Article Agreement**: Automatic `a` to `an` conversion before vowels
+- **Punctuation Spacing**: Proper spacing around punctuation marks
+- **Quote Formatting**: Smart quote spacing with opening/closing detection
+
+### Advanced Capabilities
+- **Multi-word Processing**: `word1 word2 (up, 2)` transforms last N words
+- **Nested Quotes**: Handles complex quote nesting scenarios
+- **Error Recovery**: Invalid inputs remain unchanged with warnings
+- **Smart Spacing**: Context-aware spacing around punctuation and quotes
 
 ## Target Users
-- Content editors and writers needing text normalization
-- Document processing workflows requiring consistent formatting
-- Developers working with text preprocessing pipelines
-- Teams needing automated text correction tools
 
-## Use Cases
-- Auto-editing text before publication or analysis
-- Preprocessing documents for further text analysis
-- Batch correction of formatting inconsistencies
-- Educational tools for text formatting standards
-- Content management system integrations
+### Primary Users
+- **Content Writers**: Automated text formatting and grammar fixes
+- **Developers**: Text processing in build pipelines or documentation
+- **Students**: Academic writing assistance and formatting
+
+### Use Cases
+- **Document Processing**: Batch formatting of text files
+- **Content Management**: Automated text cleanup workflows
+- **Educational Tools**: Teaching proper grammar and formatting
+- **Development Workflows**: Text preprocessing in CI/CD pipelines
+
+## Command Line Interface
+```bash
+# Basic usage
+go run . input.txt output.txt
+
+# Build and run
+go build
+./go-reloaded input.txt output.txt
+```
+
+## Example Transformation
+**Input:**
+```
+it (cap) was a historic race ,lewis hamilton (up,2) took pole position , scoring " 1E (hex) points " !
+```
+
+**Output:**
+```
+It was an historic race, LEWIS HAMILTON took pole position, scoring "30 points"!
+```

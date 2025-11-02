@@ -1,79 +1,85 @@
-# Project Structure - go-reloaded
+# Project Structure
 
 ## Directory Organization
 
-### Root Level
-- `main.go` - Entry point with pipeline orchestration and CLI handling
-- `go.mod` - Go module definition (Go 1.21)
-- `README.md` - Project documentation with examples and test output
-- `AGENTS.md` - AI agent instructions and development guidelines
+```
+go-reloaded/
+├── main.go                    # CLI entry point and pipeline orchestration
+├── go.mod                     # Go module definition (Go 1.21)
+├── README.md                  # User documentation and examples
+├── functions/                 # Core transformation stages
+│   ├── numeric_conversion.go  # Hex/binary to decimal conversion
+│   ├── article_agreement.go   # Article agreement (a -> an)
+│   ├── case_transform.go      # Case transformations (up/low/cap)
+│   ├── quotation.go          # Quote spacing and formatting
+│   ├── punctuation.go        # Punctuation spacing rules
+│   ├── logger.go             # Error handling and logging
+│   └── utils.go              # File I/O utilities
+├── tests/                    # Comprehensive test suite
+│   ├── functions_test.go     # Individual stage unit tests
+│   ├── integration_test.go   # Multi-stage integration tests
+│   ├── main_test.go          # CLI integration tests
+│   └── pipeline.go           # Test pipeline definitions
+├── docs/                     # GitHub Pages documentation site
+│   ├── index.html            # Main documentation page
+│   ├── style.css             # Dark theme styling
+│   ├── script.js             # Interactive features
+│   └── icons/                # VS Code file type icons
+└── agent_reports/            # Development task reports
+```
 
-### Core Components
+## Core Components
 
-#### `/functions/` - Transformation Stages
-Contains all pipeline stage implementations (tests moved to /tests/):
-- `numeric_conversion.go` - Binary/hex to decimal conversion with error logging
-- `article_agreement.go` - "a" to "an" transformation
-- `case_transform.go` - Upper/lower/capitalize operations with count support
-- `quotation.go` - Quotation mark spacing correction
-- `punctuation.go` - Punctuation spacing normalization
-- `logger.go` - Configurable warning and error logging system
-- `utils.go` - File I/O utilities (ReadFile, WriteFile)
+### Pipeline Architecture
+- **Stage Interface**: Common interface for all transformation stages
+- **Pipeline Orchestrator**: Sequential stage execution with error handling
+- **Immutable Processing**: Each stage returns new string, no side effects
 
-#### `/tests/` - All Test Files
-Consolidated test suite with comprehensive coverage:
-- `functions_test.go` - Individual stage unit tests
-- `integration_test.go` - Phase one integration tests
-- `phase_two_test.go` - Phase two integration tests
-- `full_integration_test.go` - Complete pipeline with Formula One test
-- `error_handling_test.go` - Error scenarios and logging tests
-- `main_test.go` - CLI integration tests
-- `utils_test.go` - File I/O tests
-- `pipeline.go` - Test pipeline definitions
+### Transformation Stages
+1. **NumericConversionStage**: Converts `(hex)` and `(bin)` markers to decimal
+2. **PunctuationStage**: Normalizes punctuation spacing before transformations
+3. **ArticleStage**: Handles `a` to `an` conversion with case-aware patterns
+4. **CaseTransformStage**: Applies `(up)`, `(low)`, `(cap)` transformations
+5. **QuotationStage**: Final quote formatting and spacing
 
-#### `/docs/` - GitHub Pages Site
-- `index.html` - Main site with dark theme and interactive features
-- `style.css` - Responsive CSS with section navigation
-- `script.js` - Carousel, smooth scrolling, section detection
-- `icons/` - VS Code file type icons for project tree
-
-#### `/Agent_reports/` - Implementation Reports
-- `Task-01-report.md` through `Task-12-report.md` - Detailed implementation summaries
-
-#### `/docs/` (Additional Documentation)
-- `Code_Analysis.md` - Technical analysis documentation
-- `go-reloaded_StagesPlan.md` - Pipeline stage planning
-- `Test_Cases.md` - Test case documentation
-
-#### `/tasks/` - Development Workflow
-Sequential task breakdown files (TASK-01 through TASK-13):
-- Project setup and core structure
-- Individual stage implementations
-- Testing phases
-- Error handling and logging
-- Documentation and polish
-
-#### Temporary Files (Cleaned Up)
-- All temporary test files removed for clean repository
-- Tests create/cleanup their own temporary files during execution
+### Support Systems
+- **Logger**: Configurable warning/error reporting system
+- **Utils**: File I/O operations with error handling
+- **Test Framework**: Comprehensive testing with multiple integration levels
 
 ## Architectural Patterns
 
-### Pipeline Architecture
-- **Pipeline struct**: Orchestrates sequential stage processing
-- **Stage interface**: Defines `Process(text string) string` contract
-- **Modular stages**: Each transformation rule as independent stage
-- **Sequential processing**: Text flows through stages in defined order
+### Pipeline Pattern
+- Sequential processing through independent stages
+- Each stage implements common `Process(text string) string` interface
+- Stages are stateless and thread-safe
+- Easy to add, remove, or reorder stages
 
-### Stage Processing Order
-1. NumericConversionStage - Handle (hex)/(bin) markers
-2. ArticleStage - Process "a" to "an" conversions
-3. CaseTransformStage - Apply case transformations
-4. QuotationStage - Fix quotation mark spacing
-5. PunctuationStage - Normalize punctuation spacing
+### Strategy Pattern
+- Different transformation strategies for each text processing rule
+- Encapsulated algorithms in separate stage implementations
+- Runtime composition of processing pipeline
 
-### Component Relationships
-- `main.go` creates pipeline and adds stages in specific order
-- Each stage in `/functions/` implements Stage interface
-- Utility functions in `utils.go` handle file operations
-- Test files validate individual stage and integration behavior
+### Error Handling Strategy
+- Graceful degradation: invalid inputs remain unchanged
+- Comprehensive logging with configurable levels
+- No fatal errors during text processing
+
+## Component Relationships
+
+### Data Flow
+```
+Input File → NumericConversion → Punctuation → Article → Case → Quotation → Output File
+```
+
+### Dependencies
+- **main.go** orchestrates all stages and handles CLI
+- **functions/** contains independent, reusable stages
+- **tests/** validates individual stages and integration scenarios
+- **docs/** provides user-facing documentation and examples
+
+### Stage Interdependencies
+- **Order Critical**: Stages must run in specific sequence
+- **Punctuation First**: Normalizes spacing before case transformations
+- **Article Awareness**: Handles both pre and post-case transformation scenarios
+- **Quote Last**: Final formatting after all content transformations

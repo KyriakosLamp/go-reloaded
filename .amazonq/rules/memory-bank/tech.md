@@ -1,75 +1,106 @@
-# Technology Stack - go-reloaded
+# Technology Stack
 
 ## Programming Language
-- **Go 1.21** - Primary development language
-- **Standard Library Only** - No external dependencies
-
-## Module Configuration
-```
-module go-reloaded
-go 1.21
-```
+- **Go 1.21**: Modern Go version with latest language features
+- **Pure Standard Library**: Zero external dependencies for maximum portability
+- **Cross-Platform**: Runs on Linux, macOS, Windows
 
 ## Build System
-- **Go Modules** - Dependency management (though no external deps used)
-- **Native Go Build** - Standard `go build` and `go run` commands
+- **Go Modules**: Native dependency management with `go.mod`
+- **Standard Go Toolchain**: Uses built-in `go build`, `go run`, `go test`
+- **No Build Configuration**: Simple compilation with standard Go commands
 
 ## Development Commands
 
 ### Running the Application
 ```bash
+# Direct execution
 go run . input.txt output.txt
+
+# Build and run
+go build
+./go-reloaded input.txt output.txt
 ```
 
 ### Testing
 ```bash
-# Run all tests (16 tests, all passing)
+# Run all tests with verbose output
 go test ./tests -v
 
-# Run specific test categories
-go test ./tests -run TestErrorHandling
-go test ./tests -run TestFullPipelineIntegration
-go test ./tests -run TestComplexCombinations
+# Run specific test files
+go test ./tests/functions_test.go -v
 
-# Test output shows comprehensive coverage:
-# - Error handling with warnings
-# - Individual stage functionality
-# - Multi-stage integration
-# - CLI end-to-end testing
+# Run with coverage
+go test ./tests -cover
 ```
 
-### Building
+### Development Workflow
 ```bash
-# Build executable
-go build -o go-reloaded
+# Format code
+go fmt ./...
 
-# Run built executable
-./go-reloaded input.txt output.txt
+# Lint and vet
+go vet ./...
+
+# Build for different platforms
+GOOS=linux go build
+GOOS=windows go build
+GOOS=darwin go build
 ```
 
 ## Project Dependencies
-- **Zero External Dependencies** - Uses only Go standard library
-- **File I/O**: `os` package for file operations
-- **String Processing**: `strings`, `strconv` packages for transformations
-- **Regular Expressions**: `regexp` package for pattern matching
-- **Error Handling**: `fmt`, `log` packages for logging system
-- **Testing**: `testing` package with table-driven tests
 
-## GitHub Pages Deployment
-- **Location**: `/docs/` folder ready for GitHub Pages
-- **Features**: Dark theme, responsive design, VS Code icons
-- **Technology**: Pure HTML/CSS/JavaScript, no build process required
-- **Sections**: Interactive carousel, smooth scrolling, file tree display
+### Standard Library Packages Used
+- **regexp**: Pattern matching for text transformations
+- **strings**: String manipulation and processing
+- **strconv**: String to number conversions (hex, binary)
+- **os**: File system operations and command-line arguments
+- **fmt**: Formatted I/O operations
+- **testing**: Unit and integration testing framework
+
+### No External Dependencies
+- **Zero Third-Party Libraries**: Ensures maximum compatibility
+- **Minimal Attack Surface**: Reduces security vulnerabilities
+- **Easy Deployment**: No dependency management complexity
+- **Fast Compilation**: No external package downloads
+
+## Architecture Decisions
+
+### Language Choice: Go
+- **Performance**: Compiled language with excellent performance
+- **Simplicity**: Clean syntax ideal for text processing
+- **Concurrency**: Built-in goroutines (though not used in current implementation)
+- **Standard Library**: Rich text processing capabilities
+
+### Design Patterns
+- **Interface-Based Design**: `Stage` interface for pipeline components
+- **Functional Approach**: Immutable string processing
+- **Error Handling**: Go's explicit error handling pattern
+- **Testing Strategy**: Table-driven tests with comprehensive coverage
 
 ## Development Environment
-- **Go 1.21+** required
-- **Linux/Unix** development environment
-- **Standard Go toolchain** (go, gofmt, go test)
 
-## Code Organization
-- **Package Structure**: Main package with `functions` subpackage, `tests` package
-- **Interface-Based Design**: Stage interface for pipeline components
-- **Test-Driven Development**: 16 comprehensive tests covering all functionality
-- **Modular Architecture**: Each transformation as separate, testable component
-- **Error Recovery**: Graceful degradation with configurable logging
-- **Clean Repository**: No temporary files, proper .gitignore practices
+### Recommended Setup
+- **Go 1.21+**: Latest stable Go version
+- **IDE Support**: VS Code with Go extension, GoLand, or vim-go
+- **Git**: Version control with conventional commit messages
+- **Make**: Optional build automation (not currently used)
+
+### Code Quality Tools
+- **go fmt**: Automatic code formatting
+- **go vet**: Static analysis for common errors
+- **golint**: Style guide enforcement (optional)
+- **gocyclo**: Cyclomatic complexity analysis (optional)
+
+## Deployment
+
+### Binary Distribution
+- **Single Executable**: Self-contained binary with no dependencies
+- **Cross-Compilation**: Build for multiple platforms from single source
+- **Small Footprint**: Minimal binary size due to no external dependencies
+
+### Integration Options
+- **CLI Tool**: Direct command-line usage
+- **CI/CD Pipeline**: Text processing in automated workflows
+- **Docker Container**: Containerized deployment (Dockerfile not included)
+- **Library Usage**: Import as Go module in other projects
