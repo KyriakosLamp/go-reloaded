@@ -112,8 +112,8 @@
 **Goal**: Validate all rules together on a complex paragraph.
 
 - **Test Writing**: Use the Formula One text case from the analysis doc.
-- **Implementation**: Run full pipeline with order:
-  - `NumericConversion` → `Article` → `Case` → `Quotation` → `Punctuation`.
+- **Implementation**: Run full pipeline with optimized order:
+  - `NumericConversion` → `Punctuation` → `Article` → `Case` → `Quotation`.
 - **Validation**: Confirm the output matches expected final formatted result exactly.
 
 ## Task 12: Refactor and Polish
@@ -132,11 +132,13 @@
   - Update `README.md` to describe CLI usage, pipeline order, and examples.
 - **Validation**: Ensure docs are complete and test exports validate successfully.
 
-## Final Sequential Pipeline Flow
-`NumericConversion` → `Article` → `Case` → `Quotation` → `Punctuation`
+## Final Sequential Pipeline Flow (OPTIMIZED)
+`NumericConversion` → `Punctuation` → `Article` → `Case` → `Quotation`
 
-##### Why this order works:
-1. Numbers and articles normalize base words first.
-2. Case changes apply after grammar is correct.
-3. Quotes and punctuation finalize text readability.
-4. Simple, sequential logic — no concurrency, no synchronization, just clean transformations.
+##### Why this optimized order works:
+1. **Numeric conversions first**: Convert markers before any text transformations.
+2. **Punctuation normalization**: Fix spacing issues (like comma spacing) before case transformations.
+3. **Article agreement**: Handle a→an conversion with robust keyword skipping.
+4. **Case transformations**: Apply after punctuation is normalized to avoid interference.
+5. **Quote formatting last**: Final cleanup of internal quote spacing after all content changes.
+6. Simple, sequential logic — no concurrency, no synchronization, just clean transformations.
