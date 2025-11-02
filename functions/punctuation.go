@@ -21,11 +21,11 @@ func (p *PunctuationStage) Process(text string) string {
 	text = colonQuotePattern.ReplaceAllString(text, "$1 $2")
 	
 	// Handle multiple punctuation first (!!, ??, ...)
-	multiplePunctPattern := regexp.MustCompile(`([!]{2,}|[?]{2,}|[.]{3,})([a-zA-Z'"\(])`)
+	multiplePunctPattern := regexp.MustCompile(`([!?]{2,}|[.]{3,})([a-zA-Z'"(])`)
 	text = multiplePunctPattern.ReplaceAllString(text, "$1 $2")
 	
 	// Then handle single punctuation
-	singlePunctPattern := regexp.MustCompile(`([.,:;!?])([a-zA-Z'"\(])`)
+	singlePunctPattern := regexp.MustCompile(`([.,:;!?])([a-zA-Z'"(])`)
 	text = singlePunctPattern.ReplaceAllString(text, "$1 $2")
 	
 	// Smart quote spacing: opening quotes need space before, closing quotes need space after

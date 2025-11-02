@@ -13,7 +13,7 @@ func (a *ArticleStage) Process(text string) string {
 	// Pattern to match "a" followed by case transformation and vowel-starting word
 	caseTransformPattern := regexp.MustCompile(`\ba\s+\((cap|up|low)\)\s+([aeiouAEIOUhH]\w*)`)
 	text = caseTransformPattern.ReplaceAllStringFunc(text, func(match string) string {
-		parts := regexp.MustCompile(`\ba\s+\((cap|up|low)\)\s+([aeiouAEIOUhH]\w*)`).FindStringSubmatch(match)
+		parts := caseTransformPattern.FindStringSubmatch(match)
 		if len(parts) == 3 {
 			transformType := parts[1]
 			word := parts[2]
