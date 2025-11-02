@@ -53,16 +53,16 @@ func main() {
 
 	// Create pipeline with stages in specific order:
 	// 1. Numeric conversions (hex/bin) - must be first
-	// 2. Article agreement (a->an) - handles both normal and case transformation patterns
-	// 3. Case transformations - before formatting
-	// 4. Quotation formatting - before punctuation
-	// 5. Punctuation spacing - final cleanup
+	// 2. Punctuation spacing - fix comma spacing before case transformations
+	// 3. Article agreement (a->an) - handles both normal and case transformation patterns
+	// 4. Case transformations - after punctuation is normalized
+	// 5. Quotation formatting - final cleanup
 	pipeline := NewPipeline()
 	pipeline.AddStage(&functions.NumericConversionStage{})
+	pipeline.AddStage(&functions.PunctuationStage{})
 	pipeline.AddStage(&functions.ArticleStage{})
 	pipeline.AddStage(&functions.CaseTransformStage{})
 	pipeline.AddStage(&functions.QuotationStage{})
-	pipeline.AddStage(&functions.PunctuationStage{})
 
 	// Process content through pipeline
 	result := pipeline.Process(content)
