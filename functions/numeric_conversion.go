@@ -12,9 +12,9 @@ type NumericConversionStage struct{}
 
 // Process converts (hex) and (bin) markers with preceding numbers to decimal format
 func (n *NumericConversionStage) Process(text string) string {
-	// Pattern to match (hex) or (bin) markers
-	hexPattern := regexp.MustCompile(`(\w+)\s+\(hex\)`)
-	binPattern := regexp.MustCompile(`(\w+)\s+\(bin\)`)
+	// Pattern to match (hex) or (bin) markers (within same line)
+	hexPattern := regexp.MustCompile(`(\w+)[ \t]+\(hex\)`)
+	binPattern := regexp.MustCompile(`(\w+)[ \t]+\(bin\)`)
 
 	// Process hex conversions
 	text = hexPattern.ReplaceAllStringFunc(text, func(match string) string {

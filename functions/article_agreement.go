@@ -11,7 +11,7 @@ type ArticleStage struct{}
 // Process replaces "a"/"A" with "an"/"An" before vowel-starting words, handling keywords properly
 func (a *ArticleStage) Process(text string) string {
 	// Pattern to match article + space + next word (including transformation keywords)
-	pattern := regexp.MustCompile(`\b([aA])\s+(?:\([a-z]+(?:,\s*\d+)?\)\s+)*([aeiouAEIOUhH]\w*)`)
+	pattern := regexp.MustCompile(`\b([aA])[ \t]+(?:\([a-z]+(?:,\s*\d+)?\)[ \t]+)*([aeiouAEIOUhH]\w*)`)
 	
 	// Replace all matches
 	text = pattern.ReplaceAllStringFunc(text, func(match string) string {

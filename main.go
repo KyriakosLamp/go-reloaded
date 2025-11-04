@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go-reloaded/functions"
 	"os"
+	"strings"
 )
 
 // Stage interface for pipeline stages
@@ -31,7 +32,7 @@ func (p *Pipeline) Process(text string) string {
 	for _, stage := range p.stages {
 		text = stage.Process(text)
 	}
-	return text + "\n"
+	return strings.TrimSuffix(text, "\n")
 }
 
 func main() {
