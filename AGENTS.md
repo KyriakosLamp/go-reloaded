@@ -3,9 +3,8 @@
 ## library
 - *analysis*        /docs/Code_Analysis.md    is the analysis of the project   
 - *general steps*   /docs/go-reloaded_StagesPlan.md   is the full plan step by step for the project
-- *individual tasks* /tasks/   this folder contains each task/step  (first task is TASK-01-xxx.md , last is TASK-13-xxx.md)
+- *individual tasks* /docs/tasks/   this folder contains each task/step  (first task is TASK-01-xxx.md , last is TASK-13-xxx.md)
 - *test cases* /docs/Test_Cases.md contains test cases for the project
-- *agent log* /docs/Agent_Log.md this is your log-diary write if you want there what you have done and what goes on but dont spend too much effort , it is not mandatory
 - *functions folder* /functions/ the rest of the fuctions that the main and other files will live here in order to keep it clean
 
 ## Individual tasks explanation
